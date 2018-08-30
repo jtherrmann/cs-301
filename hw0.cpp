@@ -56,12 +56,71 @@ void foo4(void) {
     }
 }
 
+const int n_registers=8; // number of "registers" in our array
+
+void check_register(int reg) {
+    if (reg < 0 || reg >= n_registers) {
+	cout << "invalid register " << reg << endl;
+	exit(1);
+    }
+}
+
+// hw 0.5
+long foo5(void) {
+    int registers[n_registers]={0}; // array storing the register values
+    int current=0; // current register number
+
+    string opcode;
+    int operand;
+
+    while (cin >> opcode >> operand && opcode != "return") {
+	if (opcode == "load")
+	    registers[current] = operand;
+	else if (opcode == "add")
+	    registers[current] += operand;
+	else if (opcode == "usereg") {
+	    check_register(operand);
+	    current = operand;
+	} else {
+	    cout << "invalid opcode " << opcode << endl;
+	    exit(1);
+	}
+    }
+
+    check_register(operand);
+    return registers[operand];
+}
+
+// hw 0.6
+int foo6(int bar) {
+    int round10=bar/10*10; // bad ones are multiples of ten
+
+    if (bar==round10) {
+	bar=bar+1; // fix it
+    }
+
+    return bar;
+}
+
+// related to brain teaser from hw 0.0
+int extra() {
+    long x=0xabcdf127;
+    cout << x << endl;
+    long y=0x54320ede;
+    cout << y << endl;
+    return x+y;
+}
+
 int main() {
     // cout << foo1(42) << endl;
     // cout << foo1(41) << endl;
     // foo2();
     // foo3();
-    foo4();
+    // foo4();
+    // cout << foo5() << endl;
+    // cout << foo6(5) << endl;
+    // cout << foo6(10) << endl;
+    cout << extra() << endl;
     return 0;
 }
   
