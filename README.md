@@ -1,3 +1,3 @@
 Jake Herrmann\
-CS 301 Fall 2018\
-Assembly Language Programming
+CS 301: Assembly Language Programming\
+Fall 2018
